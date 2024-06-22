@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlineStore.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDb : Migration
+    public partial class CreateDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -87,14 +87,14 @@ namespace OnlineStore.Infrastructure.Migrations
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNO1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNO2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdressId = table.Column<int>(type: "int", nullable: true)
+                    AddressId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Accounts_Address_AdressId",
-                        column: x => x.AdressId,
+                        name: "FK_Accounts_Address_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Address",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -355,9 +355,8 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdressId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: true),
                     AdministratorId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -368,7 +367,8 @@ namespace OnlineStore.Infrastructure.Migrations
                         name: "FK_Stores_Address_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Stores_Administrators_AdministratorId",
                         column: x => x.AdministratorId,
@@ -427,20 +427,21 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SelaCategories",
+                name: "SaleCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartSela = table.Column<DateOnly>(type: "date", nullable: false),
-                    EndSela = table.Column<DateOnly>(type: "date", nullable: false),
+                    StartSale = table.Column<DateOnly>(type: "date", nullable: false),
+                    EndSale = table.Column<DateOnly>(type: "date", nullable: false),
+                    Discount = table.Column<int>(type: "int", nullable: false),
                     StoreId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SelaCategories", x => x.Id);
+                    table.PrimaryKey("PK_SaleCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SelaCategories_Stores_StoreId",
+                        name: "FK_SaleCategories_Stores_StoreId",
                         column: x => x.StoreId,
                         principalTable: "Stores",
                         principalColumn: "Id",
@@ -448,20 +449,21 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SelaProducts",
+                name: "SaleProducts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartSela = table.Column<DateOnly>(type: "date", nullable: false),
-                    EndSela = table.Column<DateOnly>(type: "date", nullable: false),
+                    StartSale = table.Column<DateOnly>(type: "date", nullable: false),
+                    EndSale = table.Column<DateOnly>(type: "date", nullable: false),
+                    Discount = table.Column<int>(type: "int", nullable: false),
                     StoreId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SelaProducts", x => x.Id);
+                    table.PrimaryKey("PK_SaleProducts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SelaProducts_Stores_StoreId",
+                        name: "FK_SaleProducts_Stores_StoreId",
                         column: x => x.StoreId,
                         principalTable: "Stores",
                         principalColumn: "Id",
@@ -553,16 +555,16 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     SaleCategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_SelaCategories_SaleCategoryId",
+                        name: "FK_Categories_SaleCategories_SaleCategoryId",
                         column: x => x.SaleCategoryId,
-                        principalTable: "SelaCategories",
+                        principalTable: "SaleCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -649,7 +651,7 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     SaleProductId = table.Column<int>(type: "int", nullable: true)
@@ -664,9 +666,9 @@ namespace OnlineStore.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_SelaProducts_SaleProductId",
+                        name: "FK_Products_SaleProducts_SaleProductId",
                         column: x => x.SaleProductId,
-                        principalTable: "SelaProducts",
+                        principalTable: "SaleProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -854,11 +856,11 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accounts_AdressId",
+                name: "IX_Accounts_AddressId",
                 table: "Accounts",
-                column: "AdressId",
+                column: "AddressId",
                 unique: true,
-                filter: "[AdressId] IS NOT NULL");
+                filter: "[AddressId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Administrators_AccountId",
@@ -1035,13 +1037,13 @@ namespace OnlineStore.Infrastructure.Migrations
                 column: "AdministratorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelaCategories_StoreId",
-                table: "SelaCategories",
+                name: "IX_SaleCategories_StoreId",
+                table: "SaleCategories",
                 column: "StoreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelaProducts_StoreId",
-                table: "SelaProducts",
+                name: "IX_SaleProducts_StoreId",
+                table: "SaleProducts",
                 column: "StoreId");
 
             migrationBuilder.CreateIndex(
@@ -1191,13 +1193,13 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "SelaProducts");
+                name: "SaleProducts");
 
             migrationBuilder.DropTable(
                 name: "StoreManagers");
 
             migrationBuilder.DropTable(
-                name: "SelaCategories");
+                name: "SaleCategories");
 
             migrationBuilder.DropTable(
                 name: "Stores");

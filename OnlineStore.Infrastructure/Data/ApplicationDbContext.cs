@@ -26,6 +26,8 @@ namespace OnlineStore.Infrastructure.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<SaleCategory> SaleCategories { get; set; }
+        public DbSet<SaleProduct> SaleProducts { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<StoreManager> StoreManagers { get; set; }
         public DbSet<StoreManagerPermissions> StoreManagersPermissions { get; set; }
@@ -43,8 +45,6 @@ namespace OnlineStore.Infrastructure.Data
         public DbSet<InvoiceOrder> InvoiceOrders { get; set; }
         public DbSet<InvoiceOrderLine> invoiceOrderLines { get; set; }
         public DbSet<PurchaseBill> purchaseBills { get; set; }
-        public DbSet<SaleCategory> SelaCategories { get; set; }
-        public DbSet<SaleProduct> SelaProducts { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options) { }

@@ -503,7 +503,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CategoryName");
 
                     b.Property<int?>("SaleCategoryId")
                         .HasColumnType("int");
@@ -585,7 +587,9 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("ProductName");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -635,10 +639,13 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("EndSela")
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("EndSale")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("StartSela")
+                    b.Property<DateOnly>("StartSale")
                         .HasColumnType("date");
 
                     b.Property<int?>("StoreId")
@@ -648,7 +655,7 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("SelaCategories");
+                    b.ToTable("SaleCategories");
 
                     b.HasDiscriminator().HasValue("SaleCategory");
                 });
@@ -661,10 +668,13 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("EndSela")
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("EndSale")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("StartSela")
+                    b.Property<DateOnly>("StartSale")
                         .HasColumnType("date");
 
                     b.Property<int?>("StoreId")
@@ -674,7 +684,7 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("SelaProducts");
+                    b.ToTable("SaleProducts");
 
                     b.HasDiscriminator().HasValue("SaleProduct");
                 });
@@ -693,14 +703,13 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("AdministratorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AdressId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -793,7 +802,7 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
@@ -822,9 +831,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdressId")
+                    b.HasIndex("AddressId")
                         .IsUnique()
-                        .HasFilter("[AdressId] IS NOT NULL");
+                        .HasFilter("[AddressId] IS NOT NULL");
 
                     b.ToTable("Accounts");
 
@@ -1363,7 +1372,8 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     b.HasOne("OnlineStore.Core.Entities.Users.Address", "Address")
                         .WithMany("Stores")
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("OnlineStore.Core.Entities.Users.Administrator", "Administrator")
                         .WithMany("Stores")
@@ -1418,7 +1428,7 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     b.HasOne("OnlineStore.Core.Entities.Users.Address", "Address")
                         .WithOne("Account")
-                        .HasForeignKey("OnlineStore.Core.Entities.Users.Account", "AdressId")
+                        .HasForeignKey("OnlineStore.Core.Entities.Users.Account", "AddressId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Address");

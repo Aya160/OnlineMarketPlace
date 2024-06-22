@@ -13,7 +13,7 @@ namespace OnlineStore.Core.Entities.Users
         public string PhoneNO1 { get; set; }
         public string PhoneNO2 {  get; set; }
         //public ICollection<PhoneNOForAccount> phoneNOs { get; set; }
-        public int? AdressId { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
         public Administrator Administrator { get; set; }
         public Customer Customer { get; set; }

@@ -10,6 +10,9 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.Property(c => c.Name).HasColumnName("CategoryName")
+                .HasColumnType("nvarchar(50)").IsRequired();
+
             builder.HasMany(c => c.IncludeCategories).WithOne(i => i.Category);
             builder.HasMany(c => c.Products).WithOne(p => p.Category);
             builder.HasOne(c => c.SaleCategorie).WithMany(s => s.Categories)

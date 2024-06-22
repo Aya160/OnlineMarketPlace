@@ -1,6 +1,5 @@
-﻿using OnlineStore.Core.Entities.Shipping;
-using OnlineStore.Core.Entities.StoreEntity;
-using OnlineStore.Core.Entities.Users;
+﻿using OnlineStore.Core.Entities.StoreEntity;
+using OnlineStore.Web.DTOs.ShippingDTO;
 using OnlineStore.Web.DTOs.UsersDTO;
 
 namespace OnlineStore.Web.DTOs.StoreDTO
@@ -12,6 +11,6 @@ namespace OnlineStore.Web.DTOs.StoreDTO
         public int? CustomerId { get; set; }
         public CustomerDTO Customer { get; set; }
         public List<ContaintProduct> ContaintProducts { get; set; }
-        public DeliverCart DeliverCart { get; set; }
+        public DeliverCartDTO DeliverCart { get; set; }
     }
 }

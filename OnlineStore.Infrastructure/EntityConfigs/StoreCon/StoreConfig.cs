@@ -9,8 +9,13 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
     {
         public void Configure(EntityTypeBuilder<Store> builder)
         {
+            builder.Property(s => s.Name).HasColumnType("nvarchar(50)").IsRequired();
+            builder.Property(s => s.Location).IsRequired();
+
             builder.HasOne(s => s.Administrator).WithMany(a => a.Stores)
                 .HasForeignKey(s => s.AdministratorId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(s => s.Address).WithMany(a => a.Stores)
+                .HasForeignKey(s => s.AddressId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(s => s.WorksOnStore).WithOne(w => w.Store);
             builder.HasOne(s => s.StoreManager).WithOne(sm => sm.Store);
             builder.HasMany(s => s.IncludeCategories).WithOne(i => i.Store);

@@ -9,6 +9,10 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.Property(p => p.Name).HasColumnName("ProductName")
+                .HasColumnType("nvarchar(50)").IsRequired();
+            builder.Property(p => p.Price).HasColumnType("decimal(18,2)").IsRequired();
+
             builder.HasOne(p => p.Category).WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(p => p.ContaintProducts).WithOne(c => c.Product);

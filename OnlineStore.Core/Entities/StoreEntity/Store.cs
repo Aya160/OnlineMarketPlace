@@ -9,7 +9,7 @@ namespace OnlineStore.Core.Entities.StoreEntity
     {
         public string Name { get; set; }
         public string Location { get; set; }
-        public int? AdressId { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
         public StoreManager StoreManager { get; set; }
         public int? AdministratorId { get; set; }

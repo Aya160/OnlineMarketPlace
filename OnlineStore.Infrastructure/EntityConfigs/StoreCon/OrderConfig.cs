@@ -9,6 +9,8 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
+            builder.Property(o => o.RequstDate).IsRequired();
+
             builder.HasOne(o => o.Customer).WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CustomerId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(o => o.ContaintProducts).WithOne(c => c.Order);
