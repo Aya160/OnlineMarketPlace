@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "tTNqzy3vtbjbepW8i8A7IzQB2MAFeIKEXPMrOkuzIz4=",
+  "Source": "OnlineStore.Web",
+  "BasePath": "_content/OnlineStore.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

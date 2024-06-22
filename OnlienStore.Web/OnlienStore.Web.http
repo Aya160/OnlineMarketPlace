@@ -1,0 +1,6 @@
+@OnlienStore.Web_HostAddress = http://localhost:5223
+
+GET {{OnlienStore.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
