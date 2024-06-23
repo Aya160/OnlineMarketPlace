@@ -1,4 +1,5 @@
-﻿using OnlineStore.Web.DTOs.StoreDTO;
+﻿using OnlineStore.Core.Entities.StoreEntity;
+using OnlineStore.Web.DTOs.StoreDTO;
 
 namespace OnlineStore.Web.DTOs.AppAccountingDTO
 {
@@ -10,6 +11,6 @@ namespace OnlineStore.Web.DTOs.AppAccountingDTO
         public int? InvoiceId { get; set; }
         public PurchaseBillDTO PurchaseBill { get; set; }
         public int? ProductId { get; set; }
-        public ProductDTO Product { get; set; }
+        public Product Product { get; set; }
     }
 }

@@ -17,11 +17,11 @@ namespace OnlineStore.Web.Controllers
          readonly SignInManager<ApplicationUser> signInManager;
         private readonly ITokenService tokenService;
 
-        public AccountsController(UserManager<ApplicationUser> _userManager,SignInManager<ApplicationUser> _signInManager,ITokenService _tokenService)
+        public AccountsController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManager, ITokenService _tokenService)
         {
-          userManager = _userManager;
-          signInManager = _signInManager;
-           tokenService = _tokenService;
+            userManager = _userManager;
+            signInManager = _signInManager;
+            tokenService = _tokenService;
         }
 
         [HttpPost("login")]
@@ -50,8 +50,8 @@ namespace OnlineStore.Web.Controllers
                 PasswordHash = registerDTO.Password,
                 Gender = registerDTO.Gender,
                 PhoneNumber = registerDTO.PhoneNO1,
-                PhoneNo2 = registerDTO.PhoneNO2
-                // Address = registerDTO.Address,
+                PhoneNo2 = registerDTO.PhoneNO2,
+                Address = registerDTO.Address,
 
             };
           var result = await userManager.CreateAsync(applicationUser, registerDTO.Password);

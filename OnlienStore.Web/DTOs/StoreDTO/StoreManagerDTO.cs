@@ -6,7 +6,7 @@ namespace OnlineStore.Web.DTOs.StoreDTO
     {
         public int Manager {  get; set; }
         public DateTime StartAt { get; set; }
-        public List<VendorDTO> vendors { get; set; }
+        public List<VendorDTO> Vendors { get; set; }
         public List<StoreManagerPermissionsDTO> Permissions { get; set; }
     }
 }

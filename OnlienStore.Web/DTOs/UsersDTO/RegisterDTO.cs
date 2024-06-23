@@ -1,4 +1,6 @@
-﻿namespace OnlineStore.Web.DTOs.UsersDTO
+﻿using OnlineStore.Core.Entities.Users;
+
+namespace OnlineStore.Web.DTOs.UsersDTO
 {
     public class RegisterDTO
     {
@@ -10,7 +12,7 @@
         public string Gender { get; set; }
         public string PhoneNO1 { get; set; }
         public string PhoneNO2 { get; set; }
-        //public AddressDTO Address { get; set; }
+        public Address Address { get; set; }
 
     }
 }

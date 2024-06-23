@@ -9,7 +9,7 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
     {
         public void Configure(EntityTypeBuilder<StoreManager> builder)
         {
-            builder.HasMany(sm => sm.vendors).WithOne(v => v.StoreManager);
+            // builder.HasMany(sm => sm.vendors).WithOne(v => v.StoreManager);
             builder.HasOne(sm => sm.Store).WithOne(s => s.StoreManager)
                 .HasForeignKey<StoreManager>(sm => sm.StoreId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(sm => sm.Permissions).WithOne(p => p.StoreManager);

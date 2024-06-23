@@ -11,7 +11,8 @@ namespace OnlineStore.Core.Entities.Users
         public string State { get; set; }
         public string Zip {  get; set; }
         public string City { get; set; }
-       // public ApplicationUser Country { get; set; }
+        public string ApplicationUserId  { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public Account Account { get; set; }
         public DeliverCart DeliverCart { get; set; }
         public ICollection<Store> Stores { get; set; }

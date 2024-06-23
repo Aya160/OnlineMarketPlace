@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineStore.Core.Identity;
 using OnlineStore.Core.Services;
 using OnlineStore.Infrastructure.Data;
+using OnlineStore.Web.Helpers;
 using System;
 
 namespace OnlienStore.Web
@@ -36,6 +37,8 @@ namespace OnlienStore.Web
             #region AddScoped
 
             builder.Services.AddScoped<ITokenService,TokenService>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             #endregion
 

@@ -9,7 +9,7 @@ namespace OnlineStore.Core.Entities.AppAccounting
         public bool CashPayment { get; set; }
         public bool CreditPayment { get; set; }
         public DateOnly DateInvoice { get; set; }
-        public int Tax { get; set; }
+        public decimal Tax { get; set; }
         public decimal TotalAmount { get; set; }
         public DateOnly CreateDate { get; set; }
         public int? AdministratorId { get; set; }

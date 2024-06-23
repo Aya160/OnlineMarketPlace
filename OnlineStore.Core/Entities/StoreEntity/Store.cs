@@ -14,11 +14,11 @@ namespace OnlineStore.Core.Entities.StoreEntity
         public StoreManager StoreManager { get; set; }
         public int? AdministratorId { get; set; }
         public Administrator Administrator { get; set; }
-        public ICollection<WorkOnStore>  WorksOnStore { get; set; }
         public ICollection<IncludeCategory> IncludeCategories { get; set; }
         public ICollection<StoreReliesOnShippingCompanies> ShippingCompanies { get; set; }
         public ICollection<InvoiceOrder> InvoiceOrders { get; set; }
         public ICollection<SaleCategory> SaleCategories { get; set; }
         public ICollection<SaleProduct> SaleProducts { get; set; }
+        public ICollection<Vendor> Vendors { get; set; }
     }
 }

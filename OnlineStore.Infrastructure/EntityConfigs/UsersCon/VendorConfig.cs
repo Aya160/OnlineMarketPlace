@@ -12,10 +12,11 @@ namespace OnlineStore.Infrastructure.EntityConfigs.UsersCon
         {
             builder.HasOne(v => v.Account).WithOne(a => a.Vendor)
                 .HasForeignKey<Vendor>(v => v.AccountId).OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(v => v.WorkOnStore).WithOne(w => w.Vendor)
-                .HasForeignKey<WorkOnStore>(w=>w.VenderId).OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(v => v.StoreManager).WithMany(s => s.vendors)
-                .HasForeignKey(v => v.ManagerId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(v => v.Store).WithMany(v => v.Vendors)
+                .HasForeignKey(w=>w.StoreId).OnDelete(DeleteBehavior.Restrict);
+
+            //builder.HasOne(v => v.StoreManager).WithOne(s => s.Vendor)
+            //    .HasForeignKey(v => v.ManagerId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(v => v.InvoiceOrders).WithOne(i => i.Vendor);
         }
     }

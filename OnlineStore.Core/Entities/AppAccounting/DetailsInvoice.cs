@@ -4,8 +4,8 @@ namespace OnlineStore.Core.Entities.AppAccounting
 {
     public class DetailsInvoice : BaseEntity
     {
-        public int PayCash { get; set; }
-        public int Postpaid { get; set; }
+        public decimal PayCash { get; set; }
+        public decimal Postpaid { get; set; }
         public DateOnly DueDate { get; set; }
         public int? InvoiceId { get; set; }
         public PurchaseBill PurchaseBill { get; set; }

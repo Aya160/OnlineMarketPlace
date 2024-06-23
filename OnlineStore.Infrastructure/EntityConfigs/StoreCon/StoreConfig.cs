@@ -16,7 +16,7 @@ namespace OnlineStore.Infrastructure.EntityConfigs.StoreCon
                 .HasForeignKey(s => s.AdministratorId).OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(s => s.Address).WithMany(a => a.Stores)
                 .HasForeignKey(s => s.AddressId).OnDelete(DeleteBehavior.Restrict);
-            builder.HasMany(s => s.WorksOnStore).WithOne(w => w.Store);
+            builder.HasMany(s => s.Vendors).WithOne(v => v.Store);
             builder.HasOne(s => s.StoreManager).WithOne(sm => sm.Store);
             builder.HasMany(s => s.IncludeCategories).WithOne(i => i.Store);
             builder.HasMany(s => s.ShippingCompanies).WithOne(c => c.Store);

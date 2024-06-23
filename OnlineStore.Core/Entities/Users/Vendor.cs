@@ -11,10 +11,10 @@ namespace OnlineStore.Core.Entities.Users
         public decimal Salary { get; set; }
         public int? AccountId { get; set; }
         public Account Account { get; set; }
-        public int? ManagerId { get; set; }
+        // public int? ManagerId { get; set; }
         public StoreManager StoreManager { get; set; }
-        public int? WorkID { get; set; }
-        public WorkOnStore WorkOnStore { get; set; }
+         public int? StoreId { get; set; }
+        public Store Store { get; set; }
         public ICollection<InvoiceOrder> InvoiceOrders { get; set; }
     }
 }
