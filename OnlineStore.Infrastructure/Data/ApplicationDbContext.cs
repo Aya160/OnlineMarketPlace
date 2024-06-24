@@ -31,7 +31,7 @@ namespace OnlineStore.Infrastructure.Data
         public DbSet<Store> Stores { get; set; }
         public DbSet<StoreManager> StoreManagers { get; set; }
         public DbSet<StoreManagerPermissions> StoreManagersPermissions { get; set; }
-        public DbSet<WorkOnStore> WorkOnStores { get; set; }
+        //public DbSet<WorkOnStore> WorkOnStores { get; set; }
 
         //Shipping
         //public DbSet<Cart> Carts { get; set; }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using OnlineStore.Core.Entities.AppAccounting;
+using OnlineStore.Core.Entities.Users;
 using OnlineStore.Web.DTOs.AppAccountingDTO;
+using OnlineStore.Web.DTOs.UsersDTO;
 
 namespace OnlineStore.Web.Helpers
 {
@@ -8,7 +10,7 @@ namespace OnlineStore.Web.Helpers
     {
         public MappingProfile()
         {
-            CreateMap<DetailsInvoice, DetailsInvoiceDTO>();
+            CreateMap<Customer, CustomerDTO>();
         }
     }
 }
