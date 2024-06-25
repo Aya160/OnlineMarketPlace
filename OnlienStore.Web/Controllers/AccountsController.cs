@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OnlineStore.Core.Identity;
 using OnlineStore.Core.Services;
 using OnlineStore.Web.DTOs.UsersDTO;
@@ -52,7 +50,6 @@ namespace OnlineStore.Web.Controllers
                 PhoneNumber = registerDTO.PhoneNO1,
                 PhoneNo2 = registerDTO.PhoneNO2,
                 Address = registerDTO.Address,
-
             };
           var result = await userManager.CreateAsync(applicationUser, registerDTO.Password);
             if(!result.Succeeded) return BadRequest(new ApiResponse(400));
