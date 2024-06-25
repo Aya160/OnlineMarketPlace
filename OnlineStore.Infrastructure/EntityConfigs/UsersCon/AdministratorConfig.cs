@@ -14,7 +14,7 @@ namespace OnlineStore.Infrastructure.EntityConfigs.UsersCon
                 .HasForeignKey<Administrator>(ad => ad.AccountId).OnDelete(DeleteBehavior.Restrict);
             builder.HasMany(a => a.Permissions).WithOne(p => p.Administrator);
             builder.HasMany(a => a.Stores).WithOne(s => s.Administrator);
-            builder.HasMany(a => a.purchaseBills).WithOne(p => p.Administrator);
+            builder.HasMany(a => a.PurchaseBills).WithOne(p => p.Administrator);
         }
     }
 }
