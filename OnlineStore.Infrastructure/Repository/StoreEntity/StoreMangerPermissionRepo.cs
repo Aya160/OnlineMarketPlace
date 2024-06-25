@@ -5,11 +5,11 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.StoreEntity
 {
-     public class StoreMangerPermission<T> : IGenaricRepository<T> where T : StoreManagerPermissions
+     public class StoreMangerPermissionRepo<T> : IGenaricRepository<T> where T : StoreManagerPermissions
      { 
         private readonly ApplicationDbContext context;
 
-        public StoreMangerPermission(ApplicationDbContext _context)
+        public StoreMangerPermissionRepo(ApplicationDbContext _context)
         {
             context = _context;
         }

@@ -5,11 +5,11 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.Users
 { 
-    public class AdministratorPermission<T> : IGenaricRepository<T> where T : AdministratorPermission
+    public class AdministratorPermissionRepo<T> : IGenaricRepository<T> where T : AdministratorPermission
     {
         private readonly ApplicationDbContext context;
 
-        public AdministratorPermission(ApplicationDbContext _context)
+        public AdministratorPermissionRepo(ApplicationDbContext _context)
         {
             context = _context;
         }

@@ -5,11 +5,11 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.Shipping
 {
-    public class ShippingCompaniesPermissions<T> : IGenaricRepository<T> where T : ShippingCompaniesPermissions
+    public class ShippingCompaniesPermissionsRepo<T> : IGenaricRepository<T> where T : ShippingCompaniesPermissions
     {
         private readonly ApplicationDbContext context;
 
-        public ShippingCompaniesPermissions(ApplicationDbContext _context)
+        public ShippingCompaniesPermissionsRepo(ApplicationDbContext _context)
         {
             context = _context;
         }

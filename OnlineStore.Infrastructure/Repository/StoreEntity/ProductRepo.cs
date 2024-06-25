@@ -5,11 +5,11 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.StoreEntity
 {
-    public class Product<T> : IGenaricRepository<T> where T : Product
+    public class ProductRepo<T> : IGenaricRepository<T> where T : Product
     {
         private readonly ApplicationDbContext context;
 
-        public Product(ApplicationDbContext _context)
+        public ProductRepo(ApplicationDbContext _context)
         {
             context = _context;
         }

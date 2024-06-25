@@ -5,11 +5,11 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.AppAccouting
 {
-    public class InvoiceOrderOnlineLine<T> : IGenaricRepository<T> where T : InvoiceOrderOnlineLine
+    public class InvoiceOrderOnlineLineRepo<T> : IGenaricRepository<T> where T : InvoiceOrderOnlineLine
     {
         private readonly ApplicationDbContext context;
 
-        public InvoiceOrderOnlineLine(ApplicationDbContext _context)
+        public InvoiceOrderOnlineLineRepo(ApplicationDbContext _context)
         {
             context = _context;
         }
