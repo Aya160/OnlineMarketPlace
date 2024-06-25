@@ -5,35 +5,34 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.Users
 {
-    public class Address<T> : IGenaricRepository<T> where T : Address
+    public class AdministratorRepo<T> : IGenaricRepository<T> where T : Administrator
     {
         private readonly ApplicationDbContext context;
 
-        public Address(ApplicationDbContext _context)
+        public AdministratorRepo(ApplicationDbContext _context)
         {
             context = _context;
         }
-        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.Address.Include(a => a.Stores).ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.Administrators.Include(a => a.Stores).Include(a => a.Permissions).ToListAsync();
 
-        public async Task<T> GetById(int id) => (T)await context.Address.Include(a => a.Stores).FirstOrDefaultAsync(c => c.Id == id);
+        public async Task<T> GetById(int id) => (T)await context.Administrators.Include(a => a.Stores).FirstOrDefaultAsync(c => c.Id == id);
         public async Task CreateAsync(T entity)
         {
-            context.Address.Add(entity);
+            context.Administrators.Add(entity);
             await context.SaveChangesAsync();
         }
         public async Task UpdateAsync(int id, T entity)
         {
-            context.Address.Update(entity);
+            context.Administrators.Update(entity);
             await context.SaveChangesAsync();
         }
         public async Task DeleteAsync(int id)
         {
-            Address entity = await context.Address.FindAsync(id);
+            Administrator entity = await context.Administrators.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Address.Update(entity);
+            context.Administrators.Update(entity);
             await context.SaveChangesAsync();
         }
 
     }
-
 }

@@ -5,32 +5,32 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.StoreEntity
 {
-    public class SaleProduct<T> : IGenaricRepository<T> where T : SaleProduct
+    public class ProductImageRepo<T> : IGenaricRepository<T> where T : ProductImage
     {
         private readonly ApplicationDbContext context;
 
-        public SaleProduct(ApplicationDbContext _context)
+        public ProductImageRepo(ApplicationDbContext _context)
         {
             context = _context;
         }
-        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.SaleProducts.Include(s => s.Store).ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.ProductImages.Include(p => p.Product).ToListAsync();
 
-        public async Task<T> GetById(int id) => (T)await context.SaleProducts.Include(s => s.Store).FirstOrDefaultAsync(v => v.Id == id);
+        public async Task<T> GetById(int id) => (T)await context.ProductImages.Include(p => p.Product).FirstOrDefaultAsync(v => v.Id == id);
         public async Task CreateAsync(T entity)
         {
-            context.SaleProducts.Add(entity);
+            context.ProductImages.Add(entity);
             await context.SaveChangesAsync();
         }
         public async Task UpdateAsync(int id, T entity)
         {
-            context.SaleProducts.Update(entity);
+            context.ProductImages.Update(entity);
             await context.SaveChangesAsync();
         }
         public async Task DeleteAsync(int id)
         {
-            SaleProduct entity = await context.SaleProducts.FindAsync(id);
+            ProductImage entity = await context.ProductImages.FindAsync(id);
             entity!.IsDeleted = true;
-            context.SaleProducts.Update(entity);
+            context.ProductImages.Update(entity);
             await context.SaveChangesAsync();
         }
 

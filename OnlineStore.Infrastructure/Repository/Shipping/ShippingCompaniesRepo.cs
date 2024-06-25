@@ -5,34 +5,33 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.Shipping
 {
-    public class DeliverCart<T> : IGenaricRepository<T> where T : DeliverCart
+    public class ShippingCompaniesRepo<T> : IGenaricRepository<T> where T : ShippingCompanies
     {
         private readonly ApplicationDbContext context;
 
-        public DeliverCart(ApplicationDbContext _context)
+        public ShippingCompaniesRepo(ApplicationDbContext _context)
         {
             context = _context;
         }
-        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.DeliverCarts.Include(d => d.Order).ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.shippingCompanies.Include(s => s.DeliverCarts).ToListAsync();
 
-        public async Task<T> GetById(int id) => (T)await context.DeliverCarts.Include(d => d.Order).FirstOrDefaultAsync(v => v.Id == id);
+        public async Task<T> GetById(int id) => (T)await context.shippingCompanies.Include(s => s.DeliverCarts).FirstOrDefaultAsync(v => v.Id == id);
         public async Task CreateAsync(T entity)
         {
-            context.DeliverCarts.Add(entity);
+            context.shippingCompanies.Add(entity);
             await context.SaveChangesAsync();
         }
         public async Task UpdateAsync(int id, T entity)
         {
-            context.DeliverCarts.Update(entity);
+            context.shippingCompanies.Update(entity);
             await context.SaveChangesAsync();
         }
         public async Task DeleteAsync(int id)
         {
-            DeliverCart entity = await context.DeliverCarts.FindAsync(id);
+            ShippingCompanies entity = await context.shippingCompanies.FindAsync(id);
             entity!.IsDeleted = true;
-            context.DeliverCarts.Update(entity);
+            context.shippingCompanies.Update(entity);
             await context.SaveChangesAsync();
         }
-
     }
 }

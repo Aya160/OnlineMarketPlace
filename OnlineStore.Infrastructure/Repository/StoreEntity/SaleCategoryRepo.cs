@@ -5,32 +5,32 @@ using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Infrastructure.Repository.StoreEntity
 {
-    public class Order<T> : IGenaricRepository<T> where T : Order
+    public class SaleCategoryRepo<T> : IGenaricRepository<T> where T : SaleCategory
     {
         private readonly ApplicationDbContext context;
 
-        public Order(ApplicationDbContext _context)
+        public SaleCategoryRepo(ApplicationDbContext _context)
         {
             context = _context;
         }
-        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.Orders.Include(o => o.DeliverCart).ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.SaleCategories.Include(s => s.Store).ToListAsync();
 
-        public async Task<T> GetById(int id) => (T)await context.Orders.Include(o => o.DeliverCart).FirstOrDefaultAsync(v => v.Id == id);
+        public async Task<T> GetById(int id) => (T)await context.SaleCategories.Include(s => s.Store).FirstOrDefaultAsync(v => v.Id == id);
         public async Task CreateAsync(T entity)
         {
-            context.Orders.Add(entity);
+            context.SaleCategories.Add(entity);
             await context.SaveChangesAsync();
         }
         public async Task UpdateAsync(int id, T entity)
         {
-            context.Orders.Update(entity);
+            context.SaleCategories.Update(entity);
             await context.SaveChangesAsync();
         }
         public async Task DeleteAsync(int id)
         {
-            Order entity = await context.Orders.FindAsync(id);
+            SaleCategory entity = await context.SaleCategories.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Orders.Update(entity);
+            context.SaleCategories.Update(entity);
             await context.SaveChangesAsync();
         }
 
