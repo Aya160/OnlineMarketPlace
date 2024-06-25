@@ -28,9 +28,9 @@ namespace OnlineStore.Infrastructure.Repository.Users
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await context.Customers.FindAsync(id);
+            Administrator entity = await context.Administrators.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Customers.Update(entity);
+            context.Administrators.Update(entity);
             await context.SaveChangesAsync();
         }
 

@@ -28,9 +28,9 @@ namespace OnlineStore.Infrastructure.Repository.StoreEntity
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await context.Vendors.FindAsync(id);
+            Order entity = await context.Orders.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Vendors.Update(entity);
+            context.Orders.Update(entity);
             await context.SaveChangesAsync();
         }
 

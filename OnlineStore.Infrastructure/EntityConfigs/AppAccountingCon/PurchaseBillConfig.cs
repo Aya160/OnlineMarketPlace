@@ -9,7 +9,7 @@ namespace OnlineStore.Infrastructure.EntityConfigs.AppAccountingCon
     {
         public void Configure(EntityTypeBuilder<PurchaseBill> builder)
         {
-            builder.HasOne(p => p.Administrator).WithMany(a => a.purchaseBills)
+            builder.HasOne(p => p.Administrator).WithMany(a => a.PurchaseBills)
                 .HasForeignKey(p => p.AdministratorId).OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(p => p.DetailsInvoice).WithOne(d => d.PurchaseBill);
             builder.HasMany(p => p.InvoiceLines).WithOne(i => i.PurchaseBill);

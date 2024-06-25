@@ -33,9 +33,9 @@ namespace OnlineStore.Infrastructure.Repository.StoreEntity
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await context.Vendors.FindAsync(id);
+            Category entity = await context.Categories.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Vendors.Update(entity);
+            context.Categories.Update(entity);
             await context.SaveChangesAsync();
         }
 

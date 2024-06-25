@@ -33,9 +33,9 @@ namespace OnlineStore.Infrastructure.Repository.Users
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await context.Customers.FindAsync(id);
+            var entity = await context.AdministratorsPermissions.FindAsync(id);
             entity!.IsDeleted = true;
-            context.Customers.Update(entity);
+            context.AdministratorsPermissions.Update(entity);
             await context.SaveChangesAsync();
         }
 
