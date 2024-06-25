@@ -169,11 +169,14 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PayCash")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("Postpaid")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PayCash")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Postpaid")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
@@ -201,6 +204,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -235,6 +241,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<DateOnly>("CreateDate")
                         .HasColumnType("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("OnlinePayment")
                         .HasColumnType("bit");
@@ -273,6 +282,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("InvoiceOrderId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
@@ -285,7 +297,7 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("invoiceOrderLines");
+                    b.ToTable("InvoiceOrderLines");
 
                     b.HasDiscriminator().HasValue("InvoiceOrderLine");
                 });
@@ -297,6 +309,9 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
@@ -313,7 +328,7 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("InvoiceOrderOnlineLine");
+                    b.ToTable("InvoiceOrderOnlineLines");
 
                     b.HasDiscriminator().HasValue("InvoiceOrderOnlineLine");
                 });
@@ -344,8 +359,11 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<string>("InvoiceName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Tax")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
@@ -369,6 +387,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MaterialSupplied")
                         .HasColumnType("nvarchar(max)");
@@ -405,6 +426,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<string>("DeliverLocation")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
@@ -446,6 +470,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<DateTime>("ContractStartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("shippingCompanies");
@@ -466,6 +493,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<decimal>("DeliverPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Permission")
                         .HasColumnType("nvarchar(max)");
@@ -501,6 +531,9 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -563,6 +596,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("RequstDate")
                         .HasColumnType("datetime2");
 
@@ -585,6 +621,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -619,6 +658,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
@@ -644,6 +686,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<DateOnly>("EndSale")
                         .HasColumnType("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateOnly>("StartSale")
                         .HasColumnType("date");
@@ -674,6 +719,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<DateOnly>("EndSale")
                         .HasColumnType("date");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateOnly>("StartSale")
                         .HasColumnType("date");
 
@@ -703,6 +751,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("AdministratorId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -730,10 +781,16 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("StartAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VenderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -741,6 +798,10 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.HasIndex("StoreId")
                         .IsUnique()
                         .HasFilter("[StoreId] IS NOT NULL");
+
+                    b.HasIndex("VenderId")
+                        .IsUnique()
+                        .HasFilter("[VenderId] IS NOT NULL");
 
                     b.ToTable("StoreManagers");
 
@@ -754,6 +815,9 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Permission")
                         .HasColumnType("nvarchar(max)");
@@ -771,27 +835,6 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.ToTable("StoreManagersPermissions");
 
                     b.HasDiscriminator().HasValue("StoreManagerPermissions");
-                });
-
-            modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.WorkOnStore", b =>
-                {
-                    b.Property<int?>("VenderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StoreId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("VenderId", "StoreId");
-
-                    b.HasIndex("StoreId");
-
-                    b.HasIndex("VenderId")
-                        .IsUnique();
-
-                    b.ToTable("WorkOnStores");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.Users.Account", b =>
@@ -813,6 +856,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -848,8 +894,14 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -861,6 +913,10 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique()
+                        .HasFilter("[ApplicationUserId] IS NOT NULL");
 
                     b.ToTable("Address");
 
@@ -877,6 +933,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("SSN")
                         .HasColumnType("nvarchar(max)");
@@ -902,6 +961,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Property<int?>("AdministratorId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsPermission")
                         .HasColumnType("bit");
@@ -932,6 +994,9 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId")
@@ -954,8 +1019,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ManagerId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -966,7 +1031,7 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("WorkID")
+                    b.Property<int?>("StoreId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -975,7 +1040,7 @@ namespace OnlineStore.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[AccountId] IS NOT NULL");
 
-                    b.HasIndex("ManagerId");
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Vendors");
 
@@ -988,9 +1053,6 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -1050,8 +1112,6 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -1203,7 +1263,7 @@ namespace OnlineStore.Infrastructure.Migrations
             modelBuilder.Entity("OnlineStore.Core.Entities.AppAccounting.PurchaseBill", b =>
                 {
                     b.HasOne("OnlineStore.Core.Entities.Users.Administrator", "Administrator")
-                        .WithMany("purchaseBills")
+                        .WithMany("PurchaseBills")
                         .HasForeignKey("AdministratorId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -1265,12 +1325,12 @@ namespace OnlineStore.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.Category", b =>
                 {
-                    b.HasOne("OnlineStore.Core.Entities.StoreEntity.SaleCategory", "SaleCategorie")
+                    b.HasOne("OnlineStore.Core.Entities.StoreEntity.SaleCategory", "SaleCategory")
                         .WithMany("Categories")
                         .HasForeignKey("SaleCategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("SaleCategorie");
+                    b.Navigation("SaleCategory");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.ContaintProduct", b =>
@@ -1392,7 +1452,14 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasForeignKey("OnlineStore.Core.Entities.StoreEntity.StoreManager", "StoreId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("OnlineStore.Core.Entities.Users.Vendor", "Vendor")
+                        .WithOne("StoreManager")
+                        .HasForeignKey("OnlineStore.Core.Entities.StoreEntity.StoreManager", "VenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Store");
+
+                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.StoreManagerPermissions", b =>
@@ -1405,25 +1472,6 @@ namespace OnlineStore.Infrastructure.Migrations
                     b.Navigation("StoreManager");
                 });
 
-            modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.WorkOnStore", b =>
-                {
-                    b.HasOne("OnlineStore.Core.Entities.StoreEntity.Store", "Store")
-                        .WithMany("WorksOnStore")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("OnlineStore.Core.Entities.Users.Vendor", "Vendor")
-                        .WithOne("WorkOnStore")
-                        .HasForeignKey("OnlineStore.Core.Entities.StoreEntity.WorkOnStore", "VenderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Store");
-
-                    b.Navigation("Vendor");
-                });
-
             modelBuilder.Entity("OnlineStore.Core.Entities.Users.Account", b =>
                 {
                     b.HasOne("OnlineStore.Core.Entities.Users.Address", "Address")
@@ -1432,6 +1480,15 @@ namespace OnlineStore.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("OnlineStore.Core.Entities.Users.Address", b =>
+                {
+                    b.HasOne("OnlineStore.Core.Identity.ApplicationUser", "ApplicationUser")
+                        .WithOne("Address")
+                        .HasForeignKey("OnlineStore.Core.Entities.Users.Address", "ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.Users.Administrator", b =>
@@ -1471,23 +1528,14 @@ namespace OnlineStore.Infrastructure.Migrations
                         .HasForeignKey("OnlineStore.Core.Entities.Users.Vendor", "AccountId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("OnlineStore.Core.Entities.StoreEntity.StoreManager", "StoreManager")
-                        .WithMany("vendors")
-                        .HasForeignKey("ManagerId")
+                    b.HasOne("OnlineStore.Core.Entities.StoreEntity.Store", "Store")
+                        .WithMany("Vendors")
+                        .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Account");
 
-                    b.Navigation("StoreManager");
-                });
-
-            modelBuilder.Entity("OnlineStore.Core.Identity.ApplicationUser", b =>
-                {
-                    b.HasOne("OnlineStore.Core.Entities.Users.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.AppAccounting.InvoiceOrder", b =>
@@ -1569,14 +1617,12 @@ namespace OnlineStore.Infrastructure.Migrations
 
                     b.Navigation("StoreManager");
 
-                    b.Navigation("WorksOnStore");
+                    b.Navigation("Vendors");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.StoreEntity.StoreManager", b =>
                 {
                     b.Navigation("Permissions");
-
-                    b.Navigation("vendors");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.Users.Account", b =>
@@ -1601,9 +1647,9 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     b.Navigation("Permissions");
 
-                    b.Navigation("Stores");
+                    b.Navigation("PurchaseBills");
 
-                    b.Navigation("purchaseBills");
+                    b.Navigation("Stores");
                 });
 
             modelBuilder.Entity("OnlineStore.Core.Entities.Users.Customer", b =>
@@ -1615,7 +1661,12 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     b.Navigation("InvoiceOrders");
 
-                    b.Navigation("WorkOnStore");
+                    b.Navigation("StoreManager");
+                });
+
+            modelBuilder.Entity("OnlineStore.Core.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

@@ -43,7 +43,8 @@ namespace OnlineStore.Infrastructure.Data
         public DbSet<DetailsInvoice> DetailsInvoices { get; set; }
         public DbSet<InvoiceLine> InvoiceLines { get; set; }
         public DbSet<InvoiceOrder> InvoiceOrders { get; set; }
-        public DbSet<InvoiceOrderLine> invoiceOrderLines { get; set; }
+        public DbSet<InvoiceOrderLine> InvoiceOrderLines { get; set; }
+        public DbSet<InvoiceOrderOnlineLine> InvoiceOrderOnlineLines { get; set; }
         public DbSet<PurchaseBill> purchaseBills { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 

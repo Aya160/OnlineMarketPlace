@@ -12,22 +12,6 @@ namespace OnlineStore.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StreetAdderss = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -42,65 +26,6 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "shippingCompanies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyNO = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContractStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContractEndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_shippingCompanies", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Suppliers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SupplierName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNO = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaterialSupplied = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Suppliers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNO1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNO2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Accounts_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -109,7 +34,6 @@ namespace OnlineStore.Infrastructure.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNo2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -128,11 +52,40 @@ namespace OnlineStore.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "shippingCompanies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyNO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_shippingCompanies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Suppliers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MaterialSupplied = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,64 +110,26 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShippingCompaniesPermissions",
+                name: "Address",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeliverPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: true)
+                    StreetAdderss = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShippingCompaniesPermissions", x => x.Id);
+                    table.PrimaryKey("PK_Address", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShippingCompaniesPermissions_shippingCompanies_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "shippingCompanies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Administrators",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AccountId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Administrators", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Administrators_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AccountId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Customers_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Address_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -303,6 +218,98 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShippingCompaniesPermissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeliverPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShippingCompaniesPermissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShippingCompaniesPermissions_shippingCompanies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "shippingCompanies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNO1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNO2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Administrators",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Administrators", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Administrators_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AdministratorsPermissions",
                 columns: table => new
                 {
@@ -310,7 +317,8 @@ namespace OnlineStore.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPermission = table.Column<bool>(type: "bit", nullable: false),
-                    AdministratorId = table.Column<int>(type: "int", nullable: true)
+                    AdministratorId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -333,10 +341,11 @@ namespace OnlineStore.Infrastructure.Migrations
                     CashPayment = table.Column<bool>(type: "bit", nullable: false),
                     CreditPayment = table.Column<bool>(type: "bit", nullable: false),
                     DateInvoice = table.Column<DateOnly>(type: "date", nullable: false),
-                    Tax = table.Column<int>(type: "int", nullable: false),
+                    Tax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreateDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    AdministratorId = table.Column<int>(type: "int", nullable: true)
+                    AdministratorId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -358,7 +367,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: true),
-                    AdministratorId = table.Column<int>(type: "int", nullable: true)
+                    AdministratorId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -384,7 +394,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RequstDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: true)
+                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -403,11 +414,12 @@ namespace OnlineStore.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PayCash = table.Column<int>(type: "int", nullable: false),
-                    Postpaid = table.Column<int>(type: "int", nullable: false),
+                    PayCash = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Postpaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DueDate = table.Column<DateOnly>(type: "date", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: true)
+                    SupplierId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -435,7 +447,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     StartSale = table.Column<DateOnly>(type: "date", nullable: false),
                     EndSale = table.Column<DateOnly>(type: "date", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: true)
+                    StoreId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -457,33 +470,14 @@ namespace OnlineStore.Infrastructure.Migrations
                     StartSale = table.Column<DateOnly>(type: "date", nullable: false),
                     EndSale = table.Column<DateOnly>(type: "date", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: true)
+                    StoreId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SaleProducts", x => x.Id);
                     table.ForeignKey(
                         name: "FK_SaleProducts_Stores_StoreId",
-                        column: x => x.StoreId,
-                        principalTable: "Stores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StoreManagers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StoreManagers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StoreManagers_Stores_StoreId",
                         column: x => x.StoreId,
                         principalTable: "Stores",
                         principalColumn: "Id",
@@ -515,6 +509,36 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vendors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: true),
+                    StoreId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vendors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vendors_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Vendors_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeliverCarts",
                 columns: table => new
                 {
@@ -524,7 +548,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     DateArrival = table.Column<DateOnly>(type: "date", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: true),
                     AddersId = table.Column<int>(type: "int", nullable: true),
-                    CompanyId = table.Column<int>(type: "int", nullable: true)
+                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -556,7 +581,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    SaleCategoryId = table.Column<int>(type: "int", nullable: true)
+                    SaleCategoryId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -570,52 +596,61 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoreManagersPermissions",
+                name: "InvoiceOrders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PermissionStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StoreManagerId = table.Column<int>(type: "int", nullable: true)
+                    CashPayment = table.Column<bool>(type: "bit", nullable: false),
+                    OnlinePayment = table.Column<bool>(type: "bit", nullable: false),
+                    Tax = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreateDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    StoreId = table.Column<int>(type: "int", nullable: true),
+                    VendorId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StoreManagersPermissions", x => x.Id);
+                    table.PrimaryKey("PK_InvoiceOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StoreManagersPermissions_StoreManagers_StoreManagerId",
-                        column: x => x.StoreManagerId,
-                        principalTable: "StoreManagers",
+                        name: "FK_InvoiceOrders_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_InvoiceOrders_Vendors_VendorId",
+                        column: x => x.VendorId,
+                        principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vendors",
+                name: "StoreManagers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AccountId = table.Column<int>(type: "int", nullable: true),
-                    ManagerId = table.Column<int>(type: "int", nullable: true),
-                    WorkID = table.Column<int>(type: "int", nullable: true)
+                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    VenderId = table.Column<int>(type: "int", nullable: true),
+                    StoreId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vendors", x => x.Id);
+                    table.PrimaryKey("PK_StoreManagers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vendors_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
+                        name: "FK_StoreManagers_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Vendors_StoreManagers_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "StoreManagers",
+                        name: "FK_StoreManagers_Vendors_VenderId",
+                        column: x => x.VenderId,
+                        principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -654,7 +689,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
-                    SaleProductId = table.Column<int>(type: "int", nullable: true)
+                    SaleProductId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -674,57 +710,23 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvoiceOrders",
+                name: "StoreManagersPermissions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CashPayment = table.Column<bool>(type: "bit", nullable: false),
-                    OnlinePayment = table.Column<bool>(type: "bit", nullable: false),
-                    Tax = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreateDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: true),
-                    VendorId = table.Column<int>(type: "int", nullable: true)
+                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StoreManagerId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoiceOrders", x => x.Id);
+                    table.PrimaryKey("PK_StoreManagersPermissions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InvoiceOrders_Stores_StoreId",
-                        column: x => x.StoreId,
-                        principalTable: "Stores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_InvoiceOrders_Vendors_VendorId",
-                        column: x => x.VendorId,
-                        principalTable: "Vendors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkOnStores",
-                columns: table => new
-                {
-                    VenderId = table.Column<int>(type: "int", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: false),
-                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkOnStores", x => new { x.VenderId, x.StoreId });
-                    table.ForeignKey(
-                        name: "FK_WorkOnStores_Stores_StoreId",
-                        column: x => x.StoreId,
-                        principalTable: "Stores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_WorkOnStores_Vendors_VenderId",
-                        column: x => x.VenderId,
-                        principalTable: "Vendors",
+                        name: "FK_StoreManagersPermissions_StoreManagers_StoreManagerId",
+                        column: x => x.StoreManagerId,
+                        principalTable: "StoreManagers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -762,7 +764,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -782,26 +785,55 @@ namespace OnlineStore.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvoiceOrderOnlineLine",
+                name: "InvoiceOrderLines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    InvoiceOrderId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InvoiceOrderLines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InvoiceOrderLines_InvoiceOrders_InvoiceOrderId",
+                        column: x => x.InvoiceOrderId,
+                        principalTable: "InvoiceOrders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_InvoiceOrderLines_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InvoiceOrderOnlineLines",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoiceOrderOnlineLine", x => x.Id);
+                    table.PrimaryKey("PK_InvoiceOrderOnlineLines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InvoiceOrderOnlineLine_Orders_OrderId",
+                        name: "FK_InvoiceOrderOnlineLines_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_InvoiceOrderOnlineLine_Products_ProductId",
+                        name: "FK_InvoiceOrderOnlineLines_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -815,7 +847,8 @@ namespace OnlineStore.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -828,39 +861,19 @@ namespace OnlineStore.Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "invoiceOrderLines",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    InvoiceOrderId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_invoiceOrderLines", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_invoiceOrderLines_InvoiceOrders_InvoiceOrderId",
-                        column: x => x.InvoiceOrderId,
-                        principalTable: "InvoiceOrders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_invoiceOrderLines_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_AddressId",
                 table: "Accounts",
                 column: "AddressId",
                 unique: true,
                 filter: "[AddressId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_ApplicationUserId",
+                table: "Address",
+                column: "ApplicationUserId",
+                unique: true,
+                filter: "[ApplicationUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Administrators_AccountId",
@@ -905,11 +918,6 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_AddressId",
-                table: "AspNetUsers",
-                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -982,23 +990,23 @@ namespace OnlineStore.Infrastructure.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_invoiceOrderLines_InvoiceOrderId",
-                table: "invoiceOrderLines",
+                name: "IX_InvoiceOrderLines_InvoiceOrderId",
+                table: "InvoiceOrderLines",
                 column: "InvoiceOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_invoiceOrderLines_ProductId",
-                table: "invoiceOrderLines",
+                name: "IX_InvoiceOrderLines_ProductId",
+                table: "InvoiceOrderLines",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceOrderOnlineLine_OrderId",
-                table: "InvoiceOrderOnlineLine",
+                name: "IX_InvoiceOrderOnlineLines_OrderId",
+                table: "InvoiceOrderOnlineLines",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceOrderOnlineLine_ProductId",
-                table: "InvoiceOrderOnlineLine",
+                name: "IX_InvoiceOrderOnlineLines_ProductId",
+                table: "InvoiceOrderOnlineLines",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -1059,6 +1067,13 @@ namespace OnlineStore.Infrastructure.Migrations
                 filter: "[StoreId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StoreManagers_VenderId",
+                table: "StoreManagers",
+                column: "VenderId",
+                unique: true,
+                filter: "[VenderId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StoreManagersPermissions_StoreManagerId",
                 table: "StoreManagersPermissions",
                 column: "StoreManagerId");
@@ -1086,20 +1101,9 @@ namespace OnlineStore.Infrastructure.Migrations
                 filter: "[AccountId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendors_ManagerId",
+                name: "IX_Vendors_StoreId",
                 table: "Vendors",
-                column: "ManagerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkOnStores_StoreId",
-                table: "WorkOnStores",
                 column: "StoreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkOnStores_VenderId",
-                table: "WorkOnStores",
-                column: "VenderId",
-                unique: true);
         }
 
         /// <inheritdoc />
@@ -1139,10 +1143,10 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "InvoiceLines");
 
             migrationBuilder.DropTable(
-                name: "invoiceOrderLines");
+                name: "InvoiceOrderLines");
 
             migrationBuilder.DropTable(
-                name: "InvoiceOrderOnlineLine");
+                name: "InvoiceOrderOnlineLines");
 
             migrationBuilder.DropTable(
                 name: "ProductImages");
@@ -1157,13 +1161,7 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "StoreReliesOnShippingCompanies");
 
             migrationBuilder.DropTable(
-                name: "WorkOnStores");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");
@@ -1181,10 +1179,10 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "shippingCompanies");
+                name: "StoreManagers");
 
             migrationBuilder.DropTable(
-                name: "Vendors");
+                name: "shippingCompanies");
 
             migrationBuilder.DropTable(
                 name: "Customers");
@@ -1196,7 +1194,7 @@ namespace OnlineStore.Infrastructure.Migrations
                 name: "SaleProducts");
 
             migrationBuilder.DropTable(
-                name: "StoreManagers");
+                name: "Vendors");
 
             migrationBuilder.DropTable(
                 name: "SaleCategories");
@@ -1212,6 +1210,9 @@ namespace OnlineStore.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }
