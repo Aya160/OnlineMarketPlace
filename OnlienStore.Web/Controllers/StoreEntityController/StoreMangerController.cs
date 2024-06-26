@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Entities.StoreEntity;
 using OnlineStore.Infrastructure.Repository.StoreEntity;
+using OnlineStore.Web.DTOs.StoreDTO;
 using OnlineStore.Web.ErrorHandeling;
 
 namespace OnlineStore.Web.Controllers.StoreEntityController
@@ -26,7 +27,27 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
         {
             return Ok(await storeMangerRepo.GetById(id));
         }
-
+        [HttpPost]
+        public async Task<ActionResult<StoreManagerDTO>> CreateStoreManager(StoreManagerDTO storeManagerDTO)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            StoreManager storeManager = new()
+            {
+                StartAt = storeManagerDTO.StartAt,
+            };
+            await storeMangerRepo.CreateAsync(storeManager);
+            string uri = Url.Action(nameof(GetStoreMangerById), new { id = storeManager.Id });
+            return Created(uri, "Created Succsessfully");
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<StoreManagerDTO>> UpdateStoreManager(int id, StoreManagerDTO storeManagerDTO)
+        {
+            var storeManager = await storeMangerRepo.GetById(id);
+            if (storeManager is null) return NotFound(new ApiResponse(404));
+            storeManager.StartAt = storeManagerDTO.StartAt;
+            await storeMangerRepo.UpdateAsync(id, storeManager);
+            return Ok(storeManager);
+        }
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteStoreManger(int id)
         {
