@@ -9,11 +9,23 @@ namespace OnlineStore.Web.Controllers.Shipping
     [ApiController]
     public class ShippingCompaniesController : ControllerBase
     {
-        private readonly ShippingCompaniesRepo<ShippingCompanies> shippingCompanies;
+        private readonly ShippingCompaniesRepo<ShippingCompanies> shippingCompaniesRepo;
 
-        public ShippingCompaniesController(ShippingCompaniesRepo<ShippingCompanies> shippingCompanies)
+        public ShippingCompaniesController(ShippingCompaniesRepo<ShippingCompanies> shippingCompaniesRepo)
         {
-            this.shippingCompanies = shippingCompanies;
+            this.shippingCompaniesRepo = shippingCompaniesRepo;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllShippingCompanies()
+        {
+            return Ok(await shippingCompaniesRepo.GetAllAsync());
+
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetShippingCompanytById(int id)
+        {
+            return Ok(await shippingCompaniesRepo.GetById(id));
         }
     }
 }

@@ -16,5 +16,16 @@ namespace OnlineStore.Web.Controllers.Shipping
             this.deliverCartRepo = deliverCartRepo;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetAllDeliverCarts()
+        {
+            return Ok(await deliverCartRepo.GetAllAsync());
+
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetDeliverCartById(int id)
+        {
+            return Ok(await deliverCartRepo.GetById(id));
+        }
     }
 }

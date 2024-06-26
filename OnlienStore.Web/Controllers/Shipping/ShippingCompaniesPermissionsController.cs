@@ -9,11 +9,23 @@ namespace OnlineStore.Web.Controllers.Shipping
     [ApiController]
     public class ShippingCompaniesPermissionsController : ControllerBase
     {
-        private readonly ShippingCompaniesPermissionsRepo<ShippingCompaniesPermissions> shippingCompaniesPermissions;
+        private readonly ShippingCompaniesPermissionsRepo<ShippingCompaniesPermissions> shippingCompaniesPermissionsRepo;
 
-        public ShippingCompaniesPermissionsController(ShippingCompaniesPermissionsRepo<ShippingCompaniesPermissions> shippingCompaniesPermissions) 
+        public ShippingCompaniesPermissionsController(ShippingCompaniesPermissionsRepo<ShippingCompaniesPermissions> shippingCompaniesPermissionsRepo)
         {
-            this.shippingCompaniesPermissions = shippingCompaniesPermissions;
+            this.shippingCompaniesPermissionsRepo = shippingCompaniesPermissionsRepo;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllshippingCompaniesPermissions()
+        {
+            return Ok(await shippingCompaniesPermissionsRepo.GetAllAsync());
+
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetShippingCompanytPermissionById(int id)
+        {
+            return Ok(await shippingCompaniesPermissionsRepo.GetById(id));
         }
     }
 }

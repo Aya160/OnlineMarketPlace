@@ -15,5 +15,17 @@ namespace OnlineStore.Web.Controllers.AppAccouting
         {
             this.invoiceLineRepo = invoiceLineRepo;
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllInvoiceLines()
+        {
+            return Ok(await invoiceLineRepo.GetAllAsync());
+
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetInvoiceLineById(int id)
+        {
+            return Ok(await invoiceLineRepo.GetById(id));
+        }
     }
 }
