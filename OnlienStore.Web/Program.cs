@@ -38,7 +38,7 @@ namespace OnlienStore.Web
             builder.Services.AddScoped<ITokenService,TokenService>();
 
             builder.Services.AddScoped(typeof(CategoryRepo<>));
-
+            builder.Services.AddScoped(typeof(OrderRepo<>));
             builder.Services.AddScoped(typeof(ProductRepo<>));
             //builder.Services.AddAutoMapper(typeof(MappingProfile));
 
