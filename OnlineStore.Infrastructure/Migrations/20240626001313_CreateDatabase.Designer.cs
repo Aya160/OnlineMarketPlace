@@ -12,8 +12,8 @@ using OnlineStore.Infrastructure.Data;
 namespace OnlineStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240625181935_CreateDB")]
-    partial class CreateDB
+    [Migration("20240626001313_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

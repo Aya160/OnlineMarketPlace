@@ -1,12 +1,11 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Core.Identity;
 using OnlineStore.Core.Services;
 using OnlineStore.Infrastructure.Data;
+using OnlineStore.Infrastructure.Repository.StoreEntity;
 using OnlineStore.Web.Helpers;
-using System;
 
 namespace OnlienStore.Web
 {
@@ -38,7 +37,9 @@ namespace OnlienStore.Web
 
             builder.Services.AddScoped<ITokenService,TokenService>();
 
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddScoped(typeof(CategoryRepo<>));
+
+            //builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             #endregion
 
