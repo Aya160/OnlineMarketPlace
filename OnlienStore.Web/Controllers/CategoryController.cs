@@ -11,9 +11,14 @@ namespace OnlineStore.Web.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+<<<<<<< HEAD
          readonly Mapper mapper;
         public CategoryRepo<Category> categoryRepo { get; set; }
         public CategoryController(CategoryRepo<Category> _categoryRepo)
+=======
+        public CategoryRepo<Category> CategoryRepo { get; }
+        public CategoryController(CategoryRepo<Category> categoryRepo)
+>>>>>>> 5fb9a6a87f8f29f5d9607f80c269f64dfd132e20
         {
             categoryRepo = _categoryRepo;
         }
