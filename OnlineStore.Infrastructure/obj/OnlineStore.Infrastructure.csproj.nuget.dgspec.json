@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj": {}
+    "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\OnlineStore.Core.csproj": {
+    "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\OnlineStore.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\OnlineStore.Core.csproj",
+        "projectUniqueName": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\OnlineStore.Core.csproj",
         "projectName": "OnlineStore.Core",
-        "projectPath": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\OnlineStore.Core.csproj",
-        "packagesPath": "C:\\Users\\ramad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\obj\\",
+        "projectPath": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\OnlineStore.Core.csproj",
+        "packagesPath": "C:\\Users\\RTC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ramad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\RTC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,21 +94,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj": {
+    "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj",
         "projectName": "OnlineStore.Infrastructure",
-        "projectPath": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ramad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Infrastructure\\OnlineStore.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\RTC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ramad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\RTC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,8 +122,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\OnlineStore.Core.csproj": {
-                "projectPath": "C:\\Users\\ramad\\Desktop\\OnlienStore\\OnlineStore.Core\\OnlineStore.Core.csproj"
+              "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\OnlineStore.Core.csproj": {
+                "projectPath": "C:\\Users\\RTC\\Desktop\\pro\\OnlineMarketPlace\\OnlineStore.Core\\OnlineStore.Core.csproj"
               }
             }
           }
@@ -192,7 +192,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

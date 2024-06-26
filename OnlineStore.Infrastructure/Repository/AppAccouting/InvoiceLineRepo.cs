@@ -15,7 +15,7 @@ namespace OnlineStore.Infrastructure.Repository.AppAccouting
         }
         public async Task<IEnumerable<T>> GetAllAsync() => (IEnumerable<T>)await context.InvoiceLines.Include(i => i.PurchaseBill).ToListAsync();
 
-        public async Task<T> GetById(int id) => (T)await context.InvoiceLines.Include(s => s.PurchaseBill).FirstOrDefaultAsync(v => v.Id == id);
+        public async Task<T> GetById(int id) => (T)await context.InvoiceLines.Include(i => i.PurchaseBill).FirstOrDefaultAsync(v => v.Id == id);
         public async Task CreateAsync(T entity)
         {
             context.InvoiceLines.Add(entity);

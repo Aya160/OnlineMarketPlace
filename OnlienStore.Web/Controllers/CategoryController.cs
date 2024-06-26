@@ -11,8 +11,8 @@ namespace OnlineStore.Web.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        public Category<Category> CategoryRepo { get; }
-        public CategoryController(Category<Category> categoryRepo)
+        public CategoryRepo<Category> CategoryRepo { get; }
+        public CategoryController(CategoryRepo<Category> categoryRepo)
         {
             CategoryRepo = categoryRepo;
         }
