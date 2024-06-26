@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Entities.Users;
 using OnlineStore.Infrastructure.Repository.Users;
+using OnlineStore.Web.ErrorHandeling;
 
 namespace OnlineStore.Web.Controllers.User
 {
@@ -26,6 +27,20 @@ namespace OnlineStore.Web.Controllers.User
         public async Task<ActionResult> GetVendorById(int id)
         {
             return Ok(await vendorRepo.GetById(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteVendor(int id)
+        {
+            try
+            {
+                await vendorRepo.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return Ok("Deleted Succsessfully");
         }
     }
 }

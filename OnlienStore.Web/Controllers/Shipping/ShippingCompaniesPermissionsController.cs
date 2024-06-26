@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Entities.Shipping;
 using OnlineStore.Infrastructure.Repository.Shipping;
+using OnlineStore.Web.ErrorHandeling;
 
 namespace OnlineStore.Web.Controllers.Shipping
 {
@@ -23,9 +24,23 @@ namespace OnlineStore.Web.Controllers.Shipping
 
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetShippingCompanytPermissionById(int id)
+        public async Task<ActionResult> GetShippingCompanyPermissionsById(int id)
         {
             return Ok(await shippingCompaniesPermissionsRepo.GetById(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteShippingCompanyPermissions(int id)
+        {
+            try
+            {
+                await shippingCompaniesPermissionsRepo.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return Ok("Deleted Succsessfully");
         }
     }
 }

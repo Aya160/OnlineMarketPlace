@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Entities.AppAccounting;
 using OnlineStore.Infrastructure.Repository.AppAccouting;
+using OnlineStore.Web.ErrorHandeling;
 
 namespace OnlineStore.Web.Controllers.AppAccouting
 {
@@ -26,6 +27,20 @@ namespace OnlineStore.Web.Controllers.AppAccouting
         public async Task<ActionResult> GetSupplierById(int id)
         {
             return Ok(await supplierRepo.GetById(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteSupplier(int id)
+        {
+            try
+            {
+                await supplierRepo.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return Ok("Deleted Succsessfully");
         }
     }
 }

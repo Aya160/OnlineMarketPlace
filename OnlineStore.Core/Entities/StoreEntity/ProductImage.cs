@@ -5,8 +5,7 @@ namespace OnlineStore.Core.Entities.StoreEntity
 {
     public class ProductImage : BaseEntity
     {
-        public IFormFile Image {  get; set; }
-        public string ImageUrl {  get; set; }
+        public string Image {  get; set; }
         public int? ProductId { get; set; }
         public Product Product { get; set; }
     }
