@@ -39,6 +39,7 @@ namespace OnlienStore.Web
 
             builder.Services.AddScoped(typeof(CategoryRepo<>));
 
+            builder.Services.AddScoped(typeof(ProductRepo<>));
             //builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             #endregion
