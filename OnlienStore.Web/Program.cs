@@ -40,6 +40,7 @@ namespace OnlienStore.Web
             builder.Services.AddScoped(typeof(CategoryRepo<>));
 
             builder.Services.AddScoped(typeof(ProductRepo<>));
+            builder.Services.AddScoped(typeof(ProductImageRepo<>));
             //builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             #endregion
@@ -59,6 +60,7 @@ namespace OnlienStore.Web
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseAuthentication();
 
             app.UseAuthorization();

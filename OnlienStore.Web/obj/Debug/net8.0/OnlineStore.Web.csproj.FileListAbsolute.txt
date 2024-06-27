@@ -586,3 +586,4 @@ C:\Users\ramad\Desktop\OnlienStore\OnlienStore.Web\obj\Debug\net8.0\OnlineStore.
 C:\Users\ramad\Desktop\OnlienStore\OnlienStore.Web\obj\Debug\net8.0\OnlineStore.Web.genruntimeconfig.cache
 C:\Users\ramad\Desktop\OnlienStore\OnlienStore.Web\obj\Debug\net8.0\ref\OnlineStore.Web.dll
 C:\Users\RTC\Desktop\pro\OnlineMarketPlace\OnlienStore.Web\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ramad\Desktop\OnlienStore\OnlienStore.Web\bin\Debug\net8.0\OnlineStore.Web.staticwebassets.runtime.json

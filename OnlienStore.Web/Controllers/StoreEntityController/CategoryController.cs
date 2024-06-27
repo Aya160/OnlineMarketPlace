@@ -10,15 +10,8 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
     [ApiController]
     public class CategoryController : ControllerBase
     {
-<<<<<<< HEAD
         public CategoryRepo<Category> categoryRepo { get; set; }
-
         public CategoryController(CategoryRepo<Category> _categoryRepo)
-=======
-         readonly Mapper mapper;
-        public CategoryRepo<Category> categoryRepo { get; set; }
-        public CategoryController(CategoryRepo<Category> categoryRepo)
->>>>>>> 3611270575ffeb090d82664f296d7c329cc6436c
         {
             this.categoryRepo = categoryRepo;
         }
@@ -27,10 +20,6 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
         {
             var category = await categoryRepo.GetAllAsync();
             return Ok(category);
-<<<<<<< HEAD
-
-=======
->>>>>>> 3611270575ffeb090d82664f296d7c329cc6436c
         }
 
         [HttpGet("{id}")]
@@ -73,10 +62,6 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
                 return NotFound(new ApiResponse(404));
             }
             return Ok("Deleted Succsessfully");
-<<<<<<< HEAD
-
-=======
->>>>>>> 3611270575ffeb090d82664f296d7c329cc6436c
         }
     }
 }
