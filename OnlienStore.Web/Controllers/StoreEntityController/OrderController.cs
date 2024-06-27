@@ -54,5 +54,19 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
            await orderRepo.UpdateAsync(id, order);
             return Ok(order);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteOrder(int id)
+        {
+            try
+            {
+                await orderRepo.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return Ok("Deleted Succsessfully");
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Entities.AppAccounting;
 using OnlineStore.Infrastructure.Repository.AppAccouting;
+using OnlineStore.Web.DTOs.AppAccountingDTO;
 using OnlineStore.Web.ErrorHandeling;
 
 namespace OnlineStore.Web.Controllers.AppAccouting
@@ -28,7 +29,32 @@ namespace OnlineStore.Web.Controllers.AppAccouting
         {
             return Ok(await supplierRepo.GetById(id));
         }
-
+        public async Task<ActionResult<SupplierDTO>> CreateSupplier(SupplierDTO supplierDTO)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            Supplier supplier = new()
+            {
+                SupplierName = supplierDTO.SupplierName,
+                Email = supplierDTO.Email,
+                PhoneNO = supplierDTO.PhoneNO,
+                MaterialSupplied = supplierDTO.MaterialSupplied,
+            };
+            await supplierRepo.CreateAsync(supplier);
+            string uri = Url.Action(nameof(GetSupplierById), new { id = supplier.Id });
+            return Created(uri, "Created Succsessfully");
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<SupplierDTO>> UpdateSupplier(int id, SupplierDTO supplierDTO)
+        {
+            var supplier = await supplierRepo.GetById(id);
+            if (supplier is null) return NotFound(new ApiResponse(404));
+            supplier.SupplierName = supplierDTO.SupplierName;
+            supplier.Email = supplierDTO.Email;
+            supplier.PhoneNO = supplierDTO.PhoneNO;
+            supplier.MaterialSupplied = supplierDTO.MaterialSupplied;
+            await supplierRepo.UpdateAsync(id, supplier);
+            return Ok(supplier);
+        }
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteSupplier(int id)
         {

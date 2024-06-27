@@ -3,8 +3,9 @@
     public class SaleProductDTO
     {
         public int SaleProductId { get; set; }
-        public DateOnly StartSela { get; set; }
-        public DateOnly EndSela { get; set; }
+        public DateOnly StartSale { get; set; }
+        public DateOnly EndSale { get; set; }
+        public int Discount { get; set; }
         public List<ProductDTO> Products { get; set; }
     }
 }

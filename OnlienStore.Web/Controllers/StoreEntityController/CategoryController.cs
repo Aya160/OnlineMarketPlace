@@ -11,7 +11,11 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
     public class CategoryController : ControllerBase
     {
         public CategoryRepo<Category> categoryRepo { get; set; }
+<<<<<<< HEAD
         public CategoryController(CategoryRepo<Category> _categoryRepo)
+=======
+        public CategoryController(CategoryRepo<Category> categoryRepo)
+>>>>>>> 726e044da56189cd1bd9ffb666e6072f8f096764
         {
             this.categoryRepo = categoryRepo;
         }
@@ -58,7 +62,6 @@ namespace OnlineStore.Web.Controllers.StoreEntityController
             }
             catch (Exception)
             {
-
                 return NotFound(new ApiResponse(404));
             }
             return Ok("Deleted Succsessfully");
